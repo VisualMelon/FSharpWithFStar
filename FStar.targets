@@ -101,9 +101,9 @@ WARNING:  DO NOT MODIFY this file unless you are knowledgeable about MSBuild and
         
         <!-- Run extraction for .fst files -->
         <!-- TODO: What about interfaces? Should we at least run verification for them? -->
-        <Exec ConsoleToMsBuild="true" Condition="'%(Compile.Extension)' == '.fst'" Command="$(FSTAR_EXE) $(FSTAR_WARN_ERROR) $(FStarExtractionArgs) $(FSTAR_FLAGS) %(Compile.Identity) --extract &quot;+%(Compile.Filename)&quot;" IgnoreStandardErrorWarningFormat="true" />
+        <Exec ConsoleToMsBuild="true" Condition="'%(FStarCompile.Extension)' == '.fst'" Command="$(FSTAR_EXE) $(FSTAR_WARN_ERROR) $(FStarExtractionArgs) $(FSTAR_FLAGS) %(FStarCompile.Identity) --extract &quot;+%(FStarCompile.Filename)&quot;" IgnoreStandardErrorWarningFormat="true" />
 
-        <TransformFStarSourceFiles Odir="$(FStarExtractedFilesLocation)" Files="@(Compile)">
+        <TransformFStarSourceFiles Odir="$(FStarExtractedFilesLocation)" Files="@(FStarCompile)">
             <Output ItemName="FsFilesToCompile" TaskParameter="Result" />
         </TransformFStarSourceFiles>
 
@@ -117,13 +117,13 @@ WARNING:  DO NOT MODIFY this file unless you are knowledgeable about MSBuild and
 
         <ItemGroup>
             <!-- Clear the Compile ItemGroup and replace it with FsFilesToCompile -->
-            <Compile Remove="@(Compile)" />
             <Compile Include="@(FsFilesToCompile)" />
+            <Compile Include="@(FSharpCompile)" />
             <!-- To make Clean target work -->
             <FileWrites Include="@(GeneratedFsFiles)" />
         </ItemGroup>
 
-        <Message Text="Files included in the compilation: @(Compile)" />
+        <Message Text="Files included in the compilation: @(FStarCompile)" />
     </Target>
 
 </Project>
