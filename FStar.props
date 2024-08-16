@@ -9,7 +9,13 @@ WARNING:  DO NOT MODIFY this file unless you are knowledgeable about MSBuild and
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <ItemGroup>
+    <!-- pull in the compiled-as-F# ulib -->
     <PackageReference Include="ulibfs" Version="0.0.2" IsImplicitlyDefined="true" />
   </ItemGroup>
+
+  <PropertyGroup>
+    <!-- don't warn about #light off -->
+    <NoWarn>$(NoWarn);FS0062</NoWarn>
+  </PropertyGroup>
 
 </Project>

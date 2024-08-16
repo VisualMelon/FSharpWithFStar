@@ -10,7 +10,7 @@
   <Import Project="FStar.targets"  />
 
   <ItemGroup>
-    <FStarCompile Include="Logic.fst" />
+    <FStarCompile Include="Prog.fst" />
     <FSharpCompile Include="Program.fs" />
   </ItemGroup>
 

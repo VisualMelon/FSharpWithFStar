@@ -1,0 +1,1 @@
+This is a copy and paste of the SDK work at https://github.com/kant2002/FStarMSBuildSdk/ adapted so that F* and F# code can live under the same fsproj. It's better to keep F* and F# code in separate fsprojs (because the F* can't call the F# anyway), but this is useful for tiny demos.

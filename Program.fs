@@ -1,6 +1,6 @@
 ﻿module Program
 
-open Logic
+open Prog
 
 // main
 let main =
